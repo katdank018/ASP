@@ -5,24 +5,36 @@
     ViewData["Title"] = "Logik";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Hádání čísel</h1>
+    <div class="text-center">
+        <h1 class="display-4">Hádání čísel</h1>
 
 
-    @if (Model.LastGuessState != GameState.None)
-    {
-        if (Model.LastGuessState == GameState.IsGreater)
+        @if (Model.LastGuessState != GameState.None)
         {
-            <p>Číslo @Model.Number je moc velké!</p>
-        }
-        else if (Model.LastGuessState == GameState.IsLess)
-        {
-            <p>Číslo @Model.Number je moc malé!</p>
-        }
-        if (Model.LastGuessState == GameState.IsEqual)
-        {
-            <p>Hádané číslo bylo @Model.Number!</p>
+            if (Model.LastGuessState == GameState.IsGreater)
+            {
+                <p>Číslo, které hádáš, je menší.</p>
+            }
+            else if (Model.LastGuessState == GameState.IsLess)
+            {
+                <p>Číslo, které hádáš, je větší.</p>
+            }
+            if (Model.LastGuessState == GameState.IsEqual)
+            {
+                <p>Uhodl jsi!<br />Počet pokusů: @Model.TipCounter</p>
 
+            }
         }
-    }
-</div>
+    <form method="post">
+        <input type="hidden" asp-for="@Model.SecretNumber" value="@Model.SecretNumber" />
+        <input type="hidden" asp-for="@Model.Max" value="@Model.Max" />
+        <input type="hidden" asp-for="@Model.Min" value="@Model.Min" />
+        <input type="hidden" asp-for="@Model.TipCounter" value="@Model.TipCounter" />
+
+        <input type="number" class="form-check-input" asp-for="@Model.Number" min="@Model.Min" max="@Model.Max"><br />
+        <br />
+
+        <p>Hádej číslo mezi @Model.Min a @Model.Max</p><br />
+        <input type="submit" value="Tip" />
+    </form>
+    </div>

@@ -41,11 +41,11 @@ namespace RockPaperScissors
             }
             else if(SecretNumber > Number)
             {
-                LastGuessState = GameState.IsLess;
+                LastGuessState = GameState.IsGreater;
             }
             else if(SecretNumber < Number)
             {
-                LastGuessState = GameState.IsGreater;
+                LastGuessState = GameState.IsLess;
             }
         }
     }
