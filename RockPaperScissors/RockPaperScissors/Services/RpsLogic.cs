@@ -12,14 +12,17 @@ namespace RockPaperScissors.Services
         public RpsLogic(Random random)
         {
             this.random = random;
+            userData = new Rps();
         }
 
         public Rps userData { get; set; }
 
         public void GameRound(RpsMode userChoice)
         {
-            bool? isWinner = null;
+            if (userChoice == RpsMode.None) return;
             RpsMode aiChoice = (RpsMode)random.Next(1, 4);
+            userData.AiChoice = aiChoice;
+            userData.UserChoice = userChoice;
 
             if (aiChoice == RpsMode.Rock && userChoice == RpsMode.Paper ||
                 aiChoice == RpsMode.Paper && userChoice == RpsMode.Scissors ||

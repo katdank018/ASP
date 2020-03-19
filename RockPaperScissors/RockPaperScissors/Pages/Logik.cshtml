@@ -1,0 +1,28 @@
+﻿@page
+@model RockPaperScissors.LogikModel
+@using RockPaperScissors.Model
+@{
+    ViewData["Title"] = "Logik";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hádání čísel</h1>
+
+
+    @if (Model.LastGuessState != GameState.None)
+    {
+        if (Model.LastGuessState == GameState.IsGreater)
+        {
+            <p>Číslo @Model.Number je moc velké!</p>
+        }
+        else if (Model.LastGuessState == GameState.IsLess)
+        {
+            <p>Číslo @Model.Number je moc malé!</p>
+        }
+        if (Model.LastGuessState == GameState.IsEqual)
+        {
+            <p>Hádané číslo bylo @Model.Number!</p>
+
+        }
+    }
+</div>
